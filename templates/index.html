@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+	<meta http-equiv="refresh" content="15">
+</head>
+<!-- Dashboard -->
+<h3>Welcome, {{ name }}!</h3>
+<h4>Pick a server to edit:</h4>
+{%for guild in existingguilds%}
+	<a href="{{ url_for('manage',guildid=guild.id) }}" class="button">Edit {{guild.name}}<br>
+	<img src="{{ guild.icon_url }}" alt="">
+	</a><br>
+{%endfor%}
+<br>
+<h4>These servers don't have the bot installed yet! Click the button to add them, then when you've added RPICDB, reload the page!</h4>
+{%for guild in newguilds%}
+	<a href="https://discord.com/api/oauth2/authorize?client_id=823590391302717510&permissions=8&scope=applications.commands%20bot&guild_id={{guild.id}}&disable_guild_select=true" target="_blank" class="button">Add {{guild.name}}<br>
+	<img src="{{ guild.icon_url }}" alt="">
+	</a><br>
+{%endfor%}
+{% endblock %}

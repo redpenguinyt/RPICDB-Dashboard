@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Manage server -->
+{% if allowed %}
+	<h3>{{guildname}}</h3>
+	<form action="{{ url_for('manage', guildid = guildid) }}" method = "POST">
+		<label>Youtube Channel ID {{channelname}}:</label>
+		<input style="color:black;" type="text" name="channelid" value="{{ channelid }}"><br>
+		
+		<input type=checkbox id="isLevels" name="isLevels" value=True {{'checked' if guild['isLevels'] else ""}}>
+		<label for="isLevels">Levelling system</label><br><br>
+
+		<input type=checkbox id="isWelcome" name="isWelcome" value=True {{'checked' if guild['isWelcome'] else ""}}>
+		<label for="isWelcome">Welcome message</label><br>
+
+		<br><input type="submit" value="Save">
+	</form><br>
+	<h4>Members:</h4>
+	<ul>
+		{% for key, value in users.items() %}
+			<li>{{ value["name"] }}: Level {{ value["level"] }} XP {{ value["xp"] }}</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>You are not allowed to edit this guild, <a href="{{ url_for('home') }}">click here</a> to go back to home</p>
+{% endif %}
+{% endblock %}
+
