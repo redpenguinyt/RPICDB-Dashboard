@@ -18,7 +18,9 @@
 	<h4>Members:</h4>
 	<ul>
 		{% for key, value in users.items() %}
-			<li>{{ value["name"] }}: Level {{ value["level"] }} XP {{ value["xp"] }}</li>
+			{% if "name" in value %}
+				<li>{{ value["name"] }}: Level {{ value["level"] }} XP {{ value["xp"] }}</li>
+			{% endif %}
 		{% endfor %}
 	</ul>
 {% else %}

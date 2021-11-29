@@ -65,7 +65,8 @@ async def manage(guildid):
 		users = guild["users"]
 		for key, value in users.items():
 			user = getuser(int(guildid), int(key))
-			users[key]["name"] = user.display_name
+			if user:
+				users[key]["name"] = user.display_name
 
 		guildname = getguild(guildid).name
 
