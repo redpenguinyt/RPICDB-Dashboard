@@ -1,6 +1,9 @@
 import discord
 
-bot = discord.Client(intents=discord.Intents.all())
+intents = discord.Intents.default()
+intents.members = True
+
+bot = discord.Client(intents=intents)
 
 @bot.event
 async def on_ready():
