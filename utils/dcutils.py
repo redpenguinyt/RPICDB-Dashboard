@@ -4,7 +4,6 @@ from utils.botutils import bot
 import os
 
 app = Quart("RPICDB Dashboard")
-#app.secret_key=bytes(os.environ["session"],"utf-8")
 
 app.secret_key = os.environ.get("session")
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "true"

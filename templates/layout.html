@@ -12,6 +12,7 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css')}}" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -21,7 +22,7 @@
 				<header id="header">
 					<h1><a href="{{ url_for('home') }}">RPICDB Dashboard</a></h1>
 					<nav>
-						<a href="{{ url_for('support') }}">Help</a>
+						<a class="help-text" href="{{ url_for('support') }}">Help</a>
 						{% if logged %}
 							<a href="{{ url_for('logout') }}">Logout</a>
 						{% else %}

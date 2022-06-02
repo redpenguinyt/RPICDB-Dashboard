@@ -7,7 +7,7 @@ bot = discord.Client(intents=intents)
 
 @bot.event
 async def on_ready():
-	print("Bot | Ready")
+	print(f"Logged in as {bot.user.name}")
 
 def getguild(guildid):
 	return bot.get_guild(int(guildid))

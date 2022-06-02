@@ -63,10 +63,11 @@ async def manage(guildid):
 		guild = db.getguild(guildid)
 
 		users = guild["users"]
+		
 		for key, value in users.items():
-			user = getuser(int(guildid), int(key))
-			if user:
-				users[key]["name"] = user.display_name
+			u = getuser(int(guildid), int(key))
+			if u:
+				users[key]["name"] = f"{u.name}#{u.discriminator}"
 
 		guildname = getguild(guildid).name
 
@@ -104,7 +105,8 @@ async def manage(guildid):
 
 @app.route("/invite")
 def invite():
-	return redirect("https://rpicdb.redpenguin.repl.co/invite")
+	tags = "?"+'&'.join([tag for tag in request.tags])
+	return redirect("https://rpicdb.redpenguin.repl.co/invite"+tags)
 
 @app.route("/support")
 def support():

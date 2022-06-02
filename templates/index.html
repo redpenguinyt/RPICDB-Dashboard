@@ -3,19 +3,30 @@
 <head>
 	<meta http-equiv="refresh" content="15">
 </head>
-<!-- Dashboard -->
 <h3>Welcome, {{ name }}!</h3>
+
+<!-- Dashboard -->
 <h4>Pick a server to edit:</h4>
-{%for guild in existingguilds%}
-	<a href="{{ url_for('manage',guildid=guild.id) }}" class="button">Edit {{guild.name}}<br>
-	<img src="{{ guild.icon_url }}" alt="">
-	</a><br>
-{%endfor%}
-<br>
+<div class='grid-container'>
+	{% for guild in existingguilds %}
+	<div class='grid-item'>
+		<a href="{{ url_for('manage', guildid=guild.id) }}" class="button">{{ guild.name|truncate(12, True) }}<br>
+			<img src="{{ guild.icon_url }}" alt="">
+		</a>
+	</div>
+	{% endfor %}
+</div>
+
 <h4>These servers don't have the bot installed yet! Click the button to add them, then when you've added RPICDB, reload the page!</h4>
-{%for guild in newguilds%}
-	<a href="https://discord.com/api/oauth2/authorize?client_id=823590391302717510&permissions=8&scope=applications.commands%20bot&guild_id={{guild.id}}&disable_guild_select=true" target="_blank" class="button">Add {{guild.name}}<br>
-	<img src="{{ guild.icon_url }}" alt="">
-	</a><br>
-{%endfor%}
+<div class='grid-container'>
+	{% for guild in newguilds %}
+	<div class='grid-item'>
+		<a href="{{ url_for('invite', guildid=guild.id) }}" target="_blank" class="button">{{ guild.name|truncate(12, True) }}<br>
+			<img src="{{ guild.icon_url }}" alt="">
+		</a>
+	</div>
+	{%endfor%}
+</div>
+
+
 {% endblock %}
